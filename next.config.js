@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    reactStrictMode: true,
-    output: 'export'
-}
+const nextConfig = {}
 
 module.exports = nextConfig
+
+module.exports = {
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: "flagcdn.com",
+          port: '',
+          pathname: '/**',
+        },
+      ],
+    },
+  }
