@@ -1,15 +1,15 @@
-import { GetServerSideProps } from 'next';
-import Router from 'next/router';
-import Layout from '../../components/Layout';
-import { useSession } from 'next-auth/react';
-import prisma from '../../lib/prisma';
+// import { getStaticProps, getStaticPath } from 'next';
+
 
 export const getStaticProps = async ({ params }) => {
   const id = params.id
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`).then((res) => res.json())
   const post = res.json()
   return {
-    props: post,
+    props: {
+      post
+    },
+    revalidate: 10,
   };
 };
 export const getStaticPath = async ({ params }) => {
@@ -26,15 +26,17 @@ export const getStaticPath = async ({ params }) => {
       {params:{id:"9"}},
       {params:{id:"10"}},
     ],
-    fallback: false,
+    fallback: true,
   }
 }
 
 
-const Post = (props) => {
-  return (
-    <h1>{}</h1>
-  );
-};
-
-export default Post;
+const Post = ({params}) => {
+    const id = params.id
+    console.log(params.id);
+    return (
+      <h1>{id}</h1>
+    );
+  };
+  
+  export default Post;
