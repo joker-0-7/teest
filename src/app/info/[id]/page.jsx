@@ -1,5 +1,5 @@
 
-const Post = ({params}) => {
+const post = ({params}) => {
     const id = params.id
     console.log(params.id);
     return (
@@ -7,4 +7,4 @@ const Post = ({params}) => {
     );
   };
   
-  export default Post;
+  export default post;
